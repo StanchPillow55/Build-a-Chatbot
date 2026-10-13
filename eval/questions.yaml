@@ -1,0 +1,78 @@
+# Evaluation questions for the RAG MVP.
+#
+# expected_sources: retrieving at least ONE listed source counts as a
+#   retrieval success, unless the notes say otherwise.
+# answerable: whether the corpus should be able to answer this.
+#   At least two questions are deliberately unanswerable (answerable: false)
+#   to test refusal behavior.
+#
+# These questions target the committed smoke-test corpus (data/sample/sample.txt).
+# Swap/extend them once the real corpus is in data/raw/.
+
+- id: q01
+  question: "When and where does the AI & ML Club meet?"
+  expected_sources:
+    - "sample.txt"
+  answerable: true
+  notes: "Expected fact: Thursdays 6:00 PM, Student Union Room 210."
+
+- id: q02
+  question: "How do students join the club?"
+  expected_sources:
+    - "sample.txt"
+  answerable: true
+  notes: "Expected fact: sign-up form at the first meeting + join Discord."
+
+- id: q03
+  question: "Is there a membership fee for Fall 2025?"
+  expected_sources:
+    - "sample.txt"
+  answerable: true
+  notes: "Expected fact: no membership fee for Fall 2025."
+
+- id: q04
+  question: "What officer roles lead the club?"
+  expected_sources:
+    - "sample.txt"
+  answerable: true
+  notes: "Expected fact: President, Vice President, Treasurer, Events Coordinator."
+
+- id: q05
+  question: "When are officer elections held?"
+  expected_sources:
+    - "sample.txt"
+  answerable: true
+  notes: "Expected fact: end of Spring semester for the next academic year."
+
+- id: q06
+  question: "What topics does the Fall 2025 workshop series cover?"
+  expected_sources:
+    - "sample.txt"
+  answerable: true
+  notes: "Expected fact: Python for ML, PyTorch neural networks, intro to RAG."
+
+- id: q07
+  question: "What kinds of projects can members work on?"
+  expected_sources:
+    - "sample.txt"
+  answerable: true
+  notes: "Expected fact: computer vision demos, chatbots, data-viz dashboards."
+
+- id: q08
+  question: "How can someone contact the club officers?"
+  expected_sources:
+    - "sample.txt"
+  answerable: true
+  notes: "Expected fact: via Discord or the placeholder email."
+
+- id: q09
+  question: "Who was the club president in 2035?"
+  expected_sources: []
+  answerable: false
+  notes: "Unanswerable: no named officers or future years in the corpus."
+
+- id: q10
+  question: "What is the club's annual operating budget in dollars?"
+  expected_sources: []
+  answerable: false
+  notes: "Unanswerable: no budget figures in the corpus."

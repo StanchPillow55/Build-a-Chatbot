@@ -1,0 +1,36 @@
+AI & ML Club @ SJSU — Smoke-Test Corpus
+
+This is a tiny, non-sensitive sample document used to verify that the
+Retrieval-Augmented-Generation pipeline works end to end: parse, chunk,
+embed, retrieve, generate, and cite. It contains no real club records.
+
+Meetings
+The AI & ML Club meets every Thursday at 6:00 PM in the Student Union,
+Room 210. Meetings are open to all San Jose State University students
+regardless of major or prior experience.
+
+Membership
+Students join the club by filling out the sign-up form at the first general
+meeting of the semester and joining the club Discord server. There is no
+membership fee for the Fall 2025 semester.
+
+Officers
+The club is led by a President, a Vice President, a Treasurer, and an Events
+Coordinator. Officer elections are held at the end of the Spring semester for
+the following academic year.
+
+Events
+During the Fall 2025 semester the club runs a weekly workshop series covering
+Python for machine learning, building neural networks with PyTorch, and an
+introduction to retrieval-augmented generation. The club also hosts one guest
+speaker night per month.
+
+Projects
+Members can join project teams that build small applications. Example project
+areas include computer vision demos, chatbots, and data-visualization
+dashboards. Project teams present their work at the end-of-semester showcase.
+
+Contact
+Questions can be directed to the club officers on the Discord server or by
+email at aimlclub@example.edu. This email address is a placeholder for the
+smoke-test corpus and is not a real contact.

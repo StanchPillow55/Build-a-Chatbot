@@ -1,0 +1,12 @@
+# Secrets
+.env
+
+# Derived data (regenerable Chroma index)
+index/
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
