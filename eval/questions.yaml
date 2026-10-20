@@ -6,64 +6,64 @@
 #   At least two questions are deliberately unanswerable (answerable: false)
 #   to test refusal behavior.
 #
-# These questions target the committed smoke-test corpus (data/sample/sample.txt).
-# Swap/extend them once the real corpus is in data/raw/.
+# These questions target the Fall 2025 multi-document corpus in data/raw/
+# (stand-in consulting docs until the approved Drive folder is ingested).
 
 - id: q01
   question: "When and where does the AI & ML Club meet?"
   expected_sources:
-    - "sample.txt"
+    - "Fall_2025_Meetings.md"
   answerable: true
-  notes: "Expected fact: Thursdays 6:00 PM, Student Union Room 210."
+  notes: "Expected fact: Thursdays 6:00–7:30 PM, Student Union Room 210."
 
 - id: q02
   question: "How do students join the club?"
   expected_sources:
-    - "sample.txt"
+    - "Fall_2025_Membership.txt"
   answerable: true
-  notes: "Expected fact: sign-up form at the first meeting + join Discord."
+  notes: "Expected fact: sign-up form at first general meeting + join Discord."
 
 - id: q03
   question: "Is there a membership fee for Fall 2025?"
   expected_sources:
-    - "sample.txt"
+    - "Fall_2025_Membership.txt"
   answerable: true
   notes: "Expected fact: no membership fee for Fall 2025."
 
 - id: q04
   question: "What officer roles lead the club?"
   expected_sources:
-    - "sample.txt"
+    - "Fall_2025_Officer_Handoff.docx"
   answerable: true
   notes: "Expected fact: President, Vice President, Treasurer, Events Coordinator."
 
 - id: q05
   question: "When are officer elections held?"
   expected_sources:
-    - "sample.txt"
+    - "Fall_2025_Officer_Handoff.docx"
   answerable: true
-  notes: "Expected fact: end of Spring semester for the next academic year."
+  notes: "Expected fact: end of Spring semester for the following academic year."
 
 - id: q06
   question: "What topics does the Fall 2025 workshop series cover?"
   expected_sources:
-    - "sample.txt"
+    - "Fall_2025_Events_Workshops.pdf"
   answerable: true
   notes: "Expected fact: Python for ML, PyTorch neural networks, intro to RAG."
 
 - id: q07
   question: "What kinds of projects can members work on?"
   expected_sources:
-    - "sample.txt"
+    - "Fall_2025_Events_Workshops.pdf"
   answerable: true
   notes: "Expected fact: computer vision demos, chatbots, data-viz dashboards."
 
 - id: q08
-  question: "How can someone contact the club officers?"
+  question: "Who books Student Union Room 210, and what is the backup room?"
   expected_sources:
-    - "sample.txt"
+    - "Fall_2025_Meetings.md"
   answerable: true
-  notes: "Expected fact: via Discord or the placeholder email."
+  notes: "Expected fact: Events Coordinator books via Student Involvement; backup Eng 301."
 
 - id: q09
   question: "Who was the club president in 2035?"
@@ -75,4 +75,4 @@
   question: "What is the club's annual operating budget in dollars?"
   expected_sources: []
   answerable: false
-  notes: "Unanswerable: no budget figures in the corpus."
+  notes: "Unanswerable: no total budget figure (only a $100 vote threshold)."

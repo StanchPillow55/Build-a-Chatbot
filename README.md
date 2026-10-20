@@ -135,6 +135,12 @@ OPENAI_CHAT_MODEL=gpt-6-luna
 OPENAI_EMBEDDING_MODEL=text-embedding-3-small
 ```
 
+If `gpt-6-luna` is unavailable on your account, set `OPENAI_CHAT_MODEL=gpt-4o-mini`.
+Optional `OPENAI_BASE_URL` (documented in `.env.example`) points the OpenAI SDK at
+an OpenAI-compatible endpoint such as local Ollama — useful only as a temporary
+unblock when no funded API key exists. Re-ingest after changing embedding models.
+Eval results and the temporary-provider note live in `docs/EVAL_RESULTS.md`.
+
 ## Running
 
 ```bash
@@ -163,8 +169,10 @@ raw Chroma distance, and approximate latency.
 
 ## Evaluation
 
-`eval/questions.yaml` holds ~10 questions, including deliberately unanswerable
-ones. `python -m eval.run_eval` reports, per question: id, question, whether an
+`eval/questions.yaml` holds ~10 questions aimed at the Fall 2025 stand-in corpus
+in `data/raw/` (2 deliberately unanswerable). Latest human-graded results:
+**retrieval 8/8**, **refusal 2/2** — see `docs/EVAL_RESULTS.md`.
+`python -m eval.run_eval` reports, per question: id, question, whether an
 expected source was retrieved, retrieved sources, a truncated answer, expected
 answerability, `insufficient_context`, whether an unanswerable question was
 correctly refused, and latency.

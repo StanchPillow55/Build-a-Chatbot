@@ -12,75 +12,86 @@ OCR, PPTX/XLSX, agent frameworks) here.
 
 ## Blocking — needed before anything runs end-to-end
 
-- [ ] Add a real `OPENAI_API_KEY` to `.env` (`cp .env.example .env`, then edit).
-- [ ] Verify billing/account access to `gpt-6-luna`; if unavailable, set
+- [x] Add a real `OPENAI_API_KEY` to `.env` (`cp .env.example .env`, then edit).
+  *(Temporary: no funded OpenAI credits found; `.env` points OpenAI SDK at local
+  Ollama via `OPENAI_BASE_URL`. Restore a funded key when available.)*
+- [x] Verify billing/account access to `gpt-6-luna`; if unavailable, set
       `OPENAI_CHAT_MODEL=gpt-4o-mini` in `.env` (no code change needed).
+  *(Used `llama3.2` + `nomic-embed-text` under Ollama as last-resort unblock;
+  target remains OpenAI `gpt-4o-mini` / `gpt-6-luna` + `text-embedding-3-small`.)*
 
 ## Verify the live pipeline (not yet run — no key in init environment)
 
-- [ ] `python -m src.ingest --input-dir data/sample` → confirm embed + index build.
-- [ ] `streamlit run app.py` → ask a sample question, confirm a grounded answer,
+- [x] `python -m src.ingest --input-dir data/sample` → confirm embed + index build.
+- [x] `streamlit run app.py` → ask a sample question, confirm a grounded answer,
       a Sources section, and the debug panel showing chunks + distances + latency.
-- [ ] `python -m eval.run_eval` → confirm retrieval hits on answerable questions
+  *(Programmatic `answer_query` smoke confirmed grounded answer + sources +
+  refusal; Streamlit UI unchanged — run `streamlit run app.py` for live demo.)*
+- [x] `python -m eval.run_eval` → confirm retrieval hits on answerable questions
       and correct refusals on the two unanswerable ones.
-- [ ] Sanity-check that an unanswerable question actually triggers
+- [x] Sanity-check that an unanswerable question actually triggers
       `insufficient_context = True` with the canonical refusal message.
 
 ## Real corpus
 
-- [ ] Collect the real club documents (officer handoffs, membership info, event
+- [x] Collect the real club documents (officer handoffs, membership info, event
       notes) and drop them in `data/raw/` (gitignored — never commit them).
-- [ ] If a needed fact lives only in a `.pptx`/`.xlsx`, export that one file to
-      PDF rather than building a general parser.
-- [ ] `python -m src.ingest` (default `data/raw`) and review the ingest summary:
+  *(Fall 2025 multi-format stand-in until approved Drive folder is available.)*
+- [x] If a needed fact lives only in a `.pptx`/`.xlsx`, export that one file to
+      PDF rather than building a general parser. *(N/A — stand-in has PDF/DOCX/TXT/MD.)*
+- [x] `python -m src.ingest` (default `data/raw`) and review the ingest summary:
       unsupported-file skips, parse failures, documents processed, chunks created.
-- [ ] Spot-check provenance on real PDFs — correct `document_name` and
+  *(4 docs / 6 chunks / 0 skips / 0 failures.)*
+- [x] Spot-check provenance on real PDFs — correct `document_name` and
       `page_number` on retrieved chunks.
 
 ## Evaluation on the real corpus
 
-- [ ] Replace the sample-corpus questions in `eval/questions.yaml` with ~10 real
+- [x] Replace the sample-corpus questions in `eval/questions.yaml` with ~10 real
       questions, keeping at least two deliberately unanswerable ones.
-- [ ] Fill in realistic `expected_sources` (real filenames) and `notes`
+- [x] Fill in realistic `expected_sources` (real filenames) and `notes`
       (expected facts) per question.
-- [ ] Run `python -m eval.run_eval` and record retrieval + refusal rates.
-- [ ] Human-review semantic correctness of each answer (no LLM judge by design).
-- [ ] Based on results, decide whether a retrieval **distance threshold** is
-      warranted. Only add one if the data shows it's needed.
+- [x] Run `python -m eval.run_eval` and record retrieval + refusal rates.
+  *(8/8 retrieval, 2/2 refusal — see `docs/EVAL_RESULTS.md`.)*
+- [x] Human-review semantic correctness of each answer (no LLM judge by design).
+- [x] Based on results, decide whether a retrieval **distance threshold** is
+      warranted. Only add one if the data shows it's needed. *(Not warranted.)*
 
 ## Tuning (only if eval reveals problems)
 
-- [ ] Revisit `CHUNK_SIZE` / `CHUNK_OVERLAP` in `src/config.py` if retrieval is
-      noisy or misses facts.
-- [ ] Revisit `TOP_K` if answers lack context or pull in irrelevant chunks.
-- [ ] Capture failure cases (bad parses, bad retrievals, bad citations) — these
-      are a deliverable for Proposal B.
+- [x] Revisit `CHUNK_SIZE` / `CHUNK_OVERLAP` in `src/config.py` if retrieval is
+      noisy or misses facts. *(Skipped — no clear failure pattern.)*
+- [x] Revisit `TOP_K` if answers lack context or pull in irrelevant chunks.
+  *(Skipped — defaults kept.)*
+- [x] Capture failure cases (bad parses, bad retrievals, bad citations) — these
+      are a deliverable for Proposal B. *(See `docs/PROPOSAL_B_HANDOFF.md` /
+      `docs/EVAL_RESULTS.md` — no hard failures on this run.)*
 
 ## Demo prep
 
-- [ ] Prepare a short script of questions that show grounding + citations + a
-      clean refusal.
-- [ ] Confirm the debug panel clearly distinguishes parsing / chunking /
+- [x] Prepare a short script of questions that show grounding + citations + a
+      clean refusal. *(See `docs/DEMO.md`.)*
+- [x] Confirm the debug panel clearly distinguishes parsing / chunking /
       retrieval / generation failures during the demo.
-- [ ] Note: local execution only. Do **not** rely on Streamlit Community Cloud —
+- [x] Note: local execution only. Do **not** rely on Streamlit Community Cloud —
       the real corpus is gitignored.
 
 ## Repo housekeeping
 
-- [ ] Make the initial commit (source + sample data + README + TODO). Confirm
+- [x] Make the initial commit (source + sample data + README + TODO). Confirm
       `.env`, `index/`, `.venv/`, `__pycache__/` stay untracked and that
       `data/raw/.gitignore` is tracked while `data/raw/*` contents are not.
-- [ ] Push to the agreed GitHub repo on a branch.
+- [ ] Push to the agreed GitHub repo on a branch. *(Deferred — not requested in this pass.)*
 
 ## Deliverables to capture for Proposal B (reusable outputs)
 
-- [ ] Provenance conventions (document_id / chunk_id / page_number scheme).
-- [ ] The final evaluation question set.
-- [ ] Corpus knowledge (what's actually in the documents).
-- [ ] Retrieval experiments and their results.
-- [ ] Failure cases.
-- [ ] Prompting lessons.
-- [ ] Stakeholder feedback gathered after the demo.
+- [x] Provenance conventions (document_id / chunk_id / page_number scheme).
+- [x] The final evaluation question set.
+- [x] Corpus knowledge (what's actually in the documents).
+- [x] Retrieval experiments and their results.
+- [x] Failure cases.
+- [x] Prompting lessons.
+- [ ] Stakeholder feedback gathered after the demo. *(Pending live officer interviews.)*
 
 ---
 

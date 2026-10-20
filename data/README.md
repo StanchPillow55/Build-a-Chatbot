@@ -16,6 +16,11 @@ data/
   (PDF, DOCX, TXT, MD). Everything in this folder is gitignored except its own
   `.gitignore`, so the directory survives a fresh clone but no club document is
   ever committed.
+- **Current consulting stand-in:** until the approved Fall 2025 Google Drive
+  folder is available, `data/raw/` may hold non-sensitive multi-format
+  placeholders (`Fall_2025_*.{txt,md,docx,pdf}`) so ingestion, provenance,
+  eval, and demos can proceed. Replace them with approved documents and
+  re-ingest when Drive access is ready.
 - `data/sample/` is a committed smoke-test corpus so a fresh clone can run the
   full pipeline end-to-end without any private data.
 - `index/` (at the repo root) is **derived** data generated from the corpus.
